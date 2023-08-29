@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM nvcr.io/nvidia/hpc-benchmarks:23.5
-ARG AWS_OFI_NCCL_VER=1.7.1-aws
+ARG AWS_OFI_NCCL_VER=1.7.2-aws
 ARG AWS_EFA_INSTALLER_VER=1.24.1
 ARG CUDA_HOME=/usr/local/cuda-12.1
 ARG BDIR=/tmp/bld
