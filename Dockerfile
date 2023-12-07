@@ -1,13 +1,12 @@
 # syntax=docker/dockerfile:1
 
-FROM nvcr.io/nvidia/hpc-benchmarks:23.5
-ARG AWS_OFI_NCCL_VER=1.7.3-aws
-ARG AWS_EFA_INSTALLER_VER=1.27.0
-ARG CUDA_HOME=/usr/local/cuda-12.1
+FROM nvcr.io/nvidia/hpc-benchmarks:23.10
+ARG AWS_OFI_NCCL_VER=1.7.4-aws
+ARG AWS_EFA_INSTALLER_VER=1.29.0
+ARG CUDA_HOME=/usr/local/cuda-12.2
 ARG BDIR=/tmp/bld
 
-RUN curl https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | apt-key add - && \
-    apt-get update -y && \
+RUN apt-get update -y && \
     apt-get install -y \
 	    libhwloc-dev \
 	    libtool \

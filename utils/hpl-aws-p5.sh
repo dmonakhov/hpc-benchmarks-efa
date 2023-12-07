@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export NCCL_NET='AWS Libfabric'
+export NCCL_NET=${NCCL_NET:-'AWS Libfabric'}
 export FI_EFA_USE_DEVICE_RDMA=1
 export HPL_FCT_COMM_POLICY=1
 export HPL_USE_NVSHMEM=0
