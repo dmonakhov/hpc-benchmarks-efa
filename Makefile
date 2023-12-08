@@ -21,3 +21,11 @@ tar-img: build
 enroot-img: build
 	ENROOT_SQUASH_OPTIONS="${ENROOT_SQUASH_OPTIONS}" \
 		enroot import -o ${EXPORT_PATH}/${IMAGE_NAME}+${TAG}.sqsh ${CT_RUNTIME}${IMAGE_NAME}:${TAG}
+
+check-nvlink:
+	examples/localhost/selftest-vanilla.sh
+
+check-efa: build
+	examples/localhost/selftest-efa.sh
+
+check: check-nvlink check-efa
