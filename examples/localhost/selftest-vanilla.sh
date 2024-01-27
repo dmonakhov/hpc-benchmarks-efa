@@ -25,7 +25,7 @@ esac
 
 
 #Run xhpl on vanilla container
-docker run --rm -it --privileged --gpus all --shm-size=1g \
+docker run --rm --privileged --gpus all --shm-size=1g \
        -v $(pwd):/host \
        nvcr.io/nvidia/hpc-benchmarks:23.10 \
        mpirun --bind-to none --timeout 3600 \

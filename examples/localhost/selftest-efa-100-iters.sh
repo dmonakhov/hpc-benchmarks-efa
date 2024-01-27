@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run --rm -it --privileged --gpus all --shm-size=1g \
+docker run --rm  --privileged --gpus all --shm-size=1g \
        -v $(pwd):/efa \
        hpc-benchmarks:23.10-efa-1.7.4-aws \
        mpirun --bind-to none --timeout 36000 \
