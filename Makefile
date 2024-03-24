@@ -1,6 +1,6 @@
 IMAGE_NAME ?= hpc-benchmarks
-IMAGE_BASE_TAG  ?= 23.10
-AWS_OFI_NCCL_VER ?= 1.7.4-aws
+IMAGE_BASE_TAG  ?= 24.03
+AWS_OFI_NCCL_VER ?= 1.8.1-aws
 EXPORT_PATH ?= ..
 
 ENROOT_SQUASH_OPTIONS ?= -comp lzo
