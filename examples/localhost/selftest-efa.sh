@@ -14,7 +14,7 @@ case "$(cat /sys/devices/virtual/dmi/id/product_name)" in
 	;;
     p5.48xlarge)
 	DAT_FILE=hpl-linux-x86_64/sample-dat/HPL-8GPUs.dat
-	GFLOPS=36000
+	GFLOPS=40000
 	;;
     *)
 	echo "Unknown instance type: $INSTANCE_TYPE"
@@ -25,14 +25,15 @@ esac
 
 
 #Run xhpl on vanilla container
-docker run --rm  --privileged --gpus all --shm-size=1g \
+docker run --pull=never  --rm  --privileged --gpus all --shm-size=1g \
        -v $(pwd):/host \
        hpc-benchmarks:24.03-efa-1.8.1-aws \
-       mpirun --bind-to none --timeout 3600 \
+       mpirun --bind-to none --timeout 300 \
        -np 8 \
        -x NCCL_DEBUG=INFO \
        -x NCCL_SHM_DISABLE=1 \
        -x NCCL_P2P_DISABLE=1 \
+       -x NCCL_NVLS_ENABLE=0 \
      /host/utils/hpl-aws-auto.sh  --no-multinode --dat $DAT_FILE | tee hpl_report.log
 
 # Check performance

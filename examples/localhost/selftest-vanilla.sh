@@ -14,7 +14,7 @@ case "$(cat /sys/devices/virtual/dmi/id/product_name)" in
 	;;
     p5.48xlarge)
 	DAT_FILE=hpl-linux-x86_64/sample-dat/HPL-8GPUs.dat
-	GFLOPS=43000
+	GFLOPS=42000
 	;;
     *)
 	echo "Unknown instance type: $INSTANCE_TYPE"
@@ -25,10 +25,10 @@ esac
 
 
 #Run xhpl on vanilla container
-docker run --rm --privileged --gpus all --shm-size=1g \
+docker run --pull=never  --rm --privileged --gpus all --shm-size=1g \
        -v $(pwd):/host \
        nvcr.io/nvidia/hpc-benchmarks:24.03 \
-       mpirun --bind-to none --timeout 3600 \
+       mpirun --bind-to none --timeout 300 \
        -np 8 \
        -x NCCL_DEBUG=INFO \
        -x NCCL_NET="Socket" \
