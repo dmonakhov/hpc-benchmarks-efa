@@ -36,8 +36,11 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/* \
        /usr/share/doc /usr/share/doc-base \
        /usr/share/man /usr/share/locale /usr/share/zoneinfo
+
+#FIXME: UCX/UCC is not working in AWS/EFA-RDMA case, use generic ompi/ob1
+ENV OMPI_MCA_pml=^ucx
+ENV OMPI_MCA_coll=^ucc
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CUDA_HOME}/efa/lib
 COPY utils/*.sh /workspace/
 
-
-MAINTAINER Monakhov Dmitry monakhov@amazon.com
+LABEL org.opencontainers.image.authors="monakhov@amazon.com"
