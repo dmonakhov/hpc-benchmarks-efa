@@ -3,7 +3,6 @@
 FROM nvcr.io/nvidia/hpc-benchmarks:24.03
 ARG AWS_OFI_NCCL_VER=1.9.1-aws
 ARG AWS_EFA_INSTALLER_VER=1.32.0
-ARG CUDA_HOME=/usr/local/cuda-12.2
 ARG BDIR=/tmp/bld
 
 RUN apt-get update -y && \
@@ -26,7 +25,7 @@ RUN apt-get update -y && \
 		--with-cuda=/usr/local/cuda \
 		--with-mpi=/opt/hpcx/ompi/ \
 		--enable-platform-aws \
-		--prefix ${CUDA_HOME}/efa && \
+		--prefix /usr/local/cuda/efa && \
     make -j && make install && \
     echo /usr/local/cuda/efa/lib > /etc/ld.so.conf.d/aws-ofi-nccl.conf && \
     cd / && \
@@ -40,7 +39,7 @@ RUN apt-get update -y && \
 #FIXME: UCX/UCC is not working in AWS/EFA-RDMA case, use generic ompi/ob1
 ENV OMPI_MCA_pml=^ucx
 ENV OMPI_MCA_coll=^ucc
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CUDA_HOME}/efa/lib
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/efa/lib
 COPY utils/*.sh /workspace/
 
 LABEL org.opencontainers.image.authors="monakhov@amazon.com"
