@@ -10,6 +10,9 @@ case $INSTANCE_TYPE in
     p5.48xlarge)
 	BIN=$WDIR/hpl-aws-p5.sh
 	;;
+    p5e.48xlarge)
+	BIN=$WDIR/hpl-aws-p5e.sh
+	;;
     *)
 	echo "Unknown instance type: $INSTANCE_TYPE"
 	exit 1
