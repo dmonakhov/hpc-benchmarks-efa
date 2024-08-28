@@ -19,7 +19,7 @@ make check-efa
 ```
 # Run 20 iterations of xhpl-mxp, each iter takes ~4min, total runtime expected ~1.5hours
 time docker run --pull=never --rm --privileged --gpus all --shm-size=1g \
-     nvcr.io/nvidia/hpc-benchmarks:24.03 \
+     nvcr.io/nvidia/hpc-benchmarks:24.06 \
      mpirun --bind-to none --timeout 6000 -np 8  \
      ./hpl-mxp.sh  --nb 2048 --nprow 2 --npcol 4 --nporder row \
      --gpu-affinity 0:1:2:3:4:5:6:7 \

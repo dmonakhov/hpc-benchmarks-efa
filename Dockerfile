@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM nvcr.io/nvidia/hpc-benchmarks:24.03
+FROM nvcr.io/nvidia/hpc-benchmarks:24.06
 ARG AWS_OFI_NCCL_VER=1.9.1-aws
 ARG AWS_EFA_INSTALLER_VER=1.32.0
 ARG BDIR=/tmp/bld

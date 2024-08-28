@@ -1,8 +1,8 @@
 IMAGE_NAME ?= hpc-benchmarks
 IMAGE_BASE_REPO=nvcr.io/nvidia/
-IMAGE_BASE_TAG  ?= 24.03
-AWS_OFI_NCCL_VER ?= 1.9.1-aws
-AWS_EFA_INSTALLER_VER ?=1.32.0
+IMAGE_BASE_TAG  ?= 24.06
+AWS_OFI_NCCL_VER ?= 1.11.0-aws
+AWS_EFA_INSTALLER_VER ?=1.34.0
 
 # podman:// or dockerd://
 CT_RUNTIME ?= dockerd://
