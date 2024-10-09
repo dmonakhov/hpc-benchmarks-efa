@@ -29,12 +29,33 @@ time docker run --pull=never --rm --privileged --gpus all --shm-size=1g \
 ```
 # Run slurm job on p5.48xlarge cluster of 2 nodes
 ```
-# import as squashfs image, will be saved to /fsx/app/hpc-benchmarks+24.03-efa-1.9.1-aws.sqsh
+## import as squashfs image, will be saved to /fsx/app/hpc-benchmarks+24.03-efa-1.9.1-aws.sqsh
 make  enroot-img EXPORT_PATH=/fsx/app
 
-# run a job
+## run a job
 srun --mpi=pmi2 \
      -N 2 --ntasks-per-node 8 \
      --container-image=/fsx/app/hpc-benchmarks+24.03-efa-1.9.1-aws.sqsh \
      ./hpl-aws-auto.sh --dat hpl-linux-x86_64/sample-dat/HPL-dgx-2N.dat
+```
+
+
+# Run multihost tests with plain docker.
+If SLURM or other cluster aware runtime is not available it is possible to run multihosts tests with docker like container runtime.
+Preconditions: docker, openmpi and passwordless ssh access.
+
+```
+# build container images
+make build tar-img
+# Deploy container to all hostsfile default MPI_HOSTFILE=~/.ssh/mpi_hosts.txt
+make mpi-deploy-img
+# On each node we start container with sshd, see [examples/docker/setup_sshd.sh]
+make mpi-ssh-container-create
+
+# Run xhpl test via docker exec on 16 nodes.
+./examples/docker/mpirun.docker \
+	-bind-to none \
+	-hostfile /root/.ssh/mpi_hosts.txt \
+	-N 8 -np 128 \
+	./hpl-aws-auto.sh --dat hpl-linux-x86_64/sample-dat/HPL-dgx-16N.dat
 ```

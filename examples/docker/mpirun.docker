@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
+
+: ${CT_NAME:="hpc-benchmarks"}
+: ${DEFAULT_IF:="$(ip -json route get 8.8.8.8 | jq -r '.[0].dev')"}
+
+
+docker exec  $CT_NAME  \
+       bash -c "mpirun \
+       -x LD_LIBRARY_PATH=\$LD_LIBRARY_PATH \
+       -x PATH=\$PATH \
+       -x LIBRARY_PATH=\$LIBRARY_PATH \
+       -mca btl_tcp_if_include $DEFAULT_IF \
+       $*"
+
+#-N 8  -hostfile /root/.ssh/mpi_hosts.txt16 -bind-to none    ./hpl-aws-auto.sh --dat hpl-linux-x86_64/sample-dat/HPL-dgx-16N.dat'
