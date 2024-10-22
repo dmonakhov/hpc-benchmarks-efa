@@ -20,7 +20,7 @@ function ct_exec()
 # enable privileged capabilities so sched_setaffinity(2) will works
 docker run \
        -d \
-       --network=host  \
+       --network=host --privileged  \
        --rm \
        --name $CT_NAME \
        $CT_START_OPTS \
