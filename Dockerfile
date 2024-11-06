@@ -41,6 +41,7 @@ ENV OMPI_MCA_pml=^ucx
 ENV OMPI_MCA_coll=^ucc
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/efa/lib
 COPY utils/*.sh /workspace/
+COPY utils/aws-env/* /workspace/aws-env/
 COPY hpl-linux-x86_64 /workspace/hpl-linux-x86_64/
 
 

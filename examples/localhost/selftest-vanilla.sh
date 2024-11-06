@@ -16,7 +16,7 @@ case "$(cat /sys/devices/virtual/dmi/id/product_name)" in
 	DAT_FILE=hpl-linux-x86_64/sample-dat/HPL-8GPUs.dat
 	GFLOPS=42000
 	;;
-    p5e.48xlarge)
+    p5e.48xlarge|p5en.48xlarge)
 	DAT_FILE=hpl-linux-x86_64/sample-dat/HPL-H200-8GPUs.dat
 	GFLOPS=46000
 	;;

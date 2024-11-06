@@ -12,7 +12,7 @@ fi
 
 source $ENV_FILE
 
-/workspace/hpl.sh \
+/workspace/hpl-mxp.sh \
     --gpu-affinity "$GPU_AFFINITY" \
     --mem-affinity "$MEM_AFFINITY" \
     --cpu-affinity "$CPU_AFFINITY" \
