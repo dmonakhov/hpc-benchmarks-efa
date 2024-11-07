@@ -31,7 +31,7 @@ esac
 #Run xhpl on vanilla container
 docker run --pull=never  --rm  --privileged --gpus all --shm-size=1g \
        -v $(pwd):/host \
-       hpc-benchmarks:24.06-efa-1.11.0-aws \
+       hpc-benchmarks:24.09-efa-1.11.0-aws \
        mpirun --bind-to none --timeout 300 \
        -np 8 \
        -x NCCL_DEBUG=INFO \
