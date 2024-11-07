@@ -18,12 +18,13 @@ make check-efa
 # It is possible to run hpl-mxp on a single host with vanilla container
 ```
 # Run 20 iterations of xhpl-mxp, each iter takes ~4min, total runtime expected ~1.5hours
-time docker run --pull=never \
-     --rm --privileged --gpus all --shm-size=1g \
-     nvcr.io/nvidia/hpc-benchmarks:24.06 \
-     mpirunn --bind-to none --timeout 6000 -np 8 \
-     /workspace/utils/hpl-mxp-aws-auto.sh  --nb 2048 --nprow 2 --npcol 4 --nporder row \
-     --n 380000 --test-loop 20
+time docker run --pull=never  --rm --privileged --gpus all --shm-size=1g \
+       -v $(pwd):/host \
+       nvcr.io/nvidia/hpc-benchmarks:24.06 \
+       mpirun --bind-to none --timeout 6000 -np 8  \
+       /host/utils/hpl-mxp-aws-auto.sh  \
+       --nb 2048 --nprow 2 --npcol 4 --nporder row \
+       --n 380000
 ```
 # Run slurm job on p5.48xlarge cluster of 2 nodes
 ```
