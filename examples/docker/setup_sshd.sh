@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-: ${CT_IMAGE:='hpc-benchmarks:24.09-efa-1.11.0-aws'}
+: ${CT_IMAGE:='hpc-benchmarks:24.09-efa-1.12.1-aws'}
 : ${CT_NAME:="hpc-benchmarks"}
 : ${CT_START_OPTS="--gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 --privileged"}
 : ${PUB_SSH_KEY:="$(cat ~/.ssh/id_rsa.pub)"}

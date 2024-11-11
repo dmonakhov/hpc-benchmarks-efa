@@ -2,7 +2,7 @@
 
 docker run --pull=never  --rm  --privileged --gpus all --shm-size=1g \
        -v $(pwd):/efa \
-       hpc-benchmarks:24.09-efa-1.11.0-aws \
+       hpc-benchmarks:24.09-efa-1.12.1-aws \
        mpirun --bind-to none --timeout 36000 \
        -np 8 \
        -x NCCL_DEBUG=INFO \
